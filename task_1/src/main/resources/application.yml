@@ -1,0 +1,13 @@
+app:
+  config:
+    defaultRules:
+    - m      # meters
+    - cm     # centimeters
+    - in     # inches
+    - ft     # feet
+
+    pathTo:
+      unitsTable: resources/units.json
+      extendedRules: resources/additional_rules.json
+      inputData: temp/task_1_input_data.json
+      outputData: temp/task_1_output_data.json

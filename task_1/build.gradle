@@ -1,0 +1,64 @@
+plugins {
+    id 'java'
+}
+
+ext {
+    lombokVersion = '1.18.36'
+    commonsCollectionsVersion = '4.5.0-M3'
+    commonsLangVersion = '3.18.0'
+    snakeyamlVersion = '2.4'
+    jakartaJsonApiVersion = '2.1.3'
+    eclipseParssonVersion = '1.1.7'
+    slf4jVersion = '2.0.17'
+}
+
+group = 'com.sysgears'
+version = '1.0-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    // lombok
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:${lombokVersion}"
+
+    // apache
+    implementation "org.apache.commons:commons-collections4:${commonsCollectionsVersion}"
+    implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
+
+    // yml parser
+    implementation "org.yaml:snakeyaml:${snakeyamlVersion}"
+
+    // json parser
+    implementation "jakarta.json:jakarta.json-api:${jakartaJsonApiVersion}"
+    implementation "org.eclipse.parsson:parsson:${eclipseParssonVersion}"
+
+    // slf4j
+    implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+    implementation "org.slf4j:slf4j-simple:${slf4jVersion}"
+
+    //
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
