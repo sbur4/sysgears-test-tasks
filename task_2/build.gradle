@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+}
+
+ext {
+    lombokVersion = '1.18.36'
+    commonsCollectionsVersion = '4.5.0-M3'
+    commonsLangVersion = '3.18.0'
+//    commonsIoVersion = '2.20.0'
+    jacksonVersion = '2.20.0-rc1'
+    log4j2Version = '2.25.1'
+}
+
+group = 'com.sysgears'
+version = '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+dependencies {
+    // lombok
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:${lombokVersion}"
+
+    // apache
+    implementation "org.apache.commons:commons-collections4:${commonsCollectionsVersion}"
+    implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
+//    implementation "commons-io:commons-io:${commonsIoVersion}"
+
+    // jackson
+    implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-properties:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-core:${jacksonVersion}"
+
+    // log4j2
+    implementation "org.apache.logging.log4j:log4j-core:${log4j2Version}"
+    implementation "org.apache.logging.log4j:log4j-api:${log4j2Version}"
+
+    //
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}

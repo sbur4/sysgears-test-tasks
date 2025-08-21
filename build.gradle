@@ -15,6 +15,7 @@ dependencies {
 
     // included
     implementation project(':task_1')
+    implementation project(':task_2')
 }
 
 test {

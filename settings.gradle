@@ -1,3 +1,4 @@
 rootProject.name = 'sysgears-test-tasks'
-include 'task_1'
 
+include 'task_1'
+include 'task_2'
