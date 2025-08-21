@@ -22,7 +22,5 @@ public class Root {
     Datas data;
 
     @JsonProperty("condition")
-    @JsonUnwrapped
-    @JsonFormat(shape = JsonFormat.Shape.OBJECT)
     Condition condition;
 }
