@@ -14,8 +14,9 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
     // included
-    implementation project(':task_1')
-    implementation project(':task_2')
+//    implementation project(':task_1')
+//    implementation project(':task_2')
+//    implementation project(':task_3')
 }
 
 test {

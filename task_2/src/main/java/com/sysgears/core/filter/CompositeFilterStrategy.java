@@ -39,11 +39,16 @@ public class CompositeFilterStrategy<T> implements FilterStrategy<T> {
     private Predicate<T> createFinalPredicate() {
         Predicate<T> includePredicate = includePredicates.isEmpty()
                 ? item -> true
-                : includePredicates.stream().reduce(Predicate::and).orElse(item -> true);
+                : includePredicates.stream()
+                .reduce(Predicate::and)
+                .orElse(item -> true);
 
         Predicate<T> excludePredicate = excludePredicates.isEmpty()
                 ? item -> true
-                : excludePredicates.stream().reduce(Predicate::or).orElse(item -> false).negate();
+                : excludePredicates.stream()
+                .reduce(Predicate::or)
+                .orElse(item -> false)
+                .negate();
 
         return includePredicate.and(excludePredicate);
     }
